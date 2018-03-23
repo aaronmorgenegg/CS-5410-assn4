@@ -16,16 +16,26 @@ function initialize(){
         'textures':{
             'background': background
         },
+        'player':{
+            'input': []
+        },
+        'controls': loadControls(),
         'canvas': canvas,
         'context': context,
         'particles': []
     };
 
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener("mousedown", onMouseClick, false);
+
     requestAnimationFrame(gameLoop);
 }
 
 function processInput(){
-
+    for(i = 0; i < game_data.player['input'].length; i++){
+        window[game_data.player['input'][i] + "InputToken"]();
+    }
+    resetInput();
 }
 
 function update(){

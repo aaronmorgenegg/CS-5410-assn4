@@ -3,7 +3,8 @@
 
 // Gameplay options
 
-
+GRID_WIDTH = 45;
+GRID_HEIGHT = 45;
 
 // Rendering options
 
