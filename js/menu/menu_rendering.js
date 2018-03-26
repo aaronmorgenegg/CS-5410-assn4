@@ -49,6 +49,12 @@ function creditsMenuRender(){
                 y:MENU_HEIGHT/5 + 30,
                 color:MENU_FONT_COLOR,
                 font:MENU_FONT,
-                msg:'Aaron Morgenegg'};
+                msg:'Aaron Morgenegg'
+    };
     drawText(game_data.context, credits);
+}
+
+function high_scoresMenuRender(){
+    renderButtons(game_data.menu['buttons']);
+    renderHighScores();
 }

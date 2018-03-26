@@ -17,7 +17,7 @@ function base_optionsButton(){
 }
 
 function base_high_scoresButton(){
-    console.log('High Scores Button Pressed!');
+    setMenuState('high_scores');
 }
 
 function base_creditsButton(){
@@ -30,6 +30,14 @@ function base_backButton(){
 
 function credits_backButton(){
     setMenuState('base');
+}
+
+function high_scores_backButton(){
+    setMenuState('base');
+}
+
+function high_scores_resetButton(){
+    resetHighScores();
 }
 
 function setMenuState(state){
@@ -67,5 +75,19 @@ function getcreditsMenuButtons(){
     max_x = min_x + MENU_BUTTON_WIDTH;
     min_y = MENU_HEIGHT - MENU_BUTTON_HEIGHT*2.5;
     max_y = min_y + MENU_BUTTON_HEIGHT;
-    return [{'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'back', 'display_name': 'Back'}];
+
+    back = {'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'back', 'display_name': 'Back'}
+    return [back];
+}
+
+function gethigh_scoresMenuButtons(){
+    min_x = MENU_WIDTH/2 - MENU_BUTTON_WIDTH/2;
+    max_x = min_x + MENU_BUTTON_WIDTH;
+    min_y = MENU_HEIGHT - MENU_BUTTON_HEIGHT*2.5;
+    max_y = min_y + MENU_BUTTON_HEIGHT;
+    back = {'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'back', 'display_name': 'Back'}
+    min_y -= MENU_BUTTON_HEIGHT * 1.5;
+    max_y -= MENU_BUTTON_HEIGHT * 1.5;
+    reset = {'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'reset', 'display_name': 'Reset'}
+    return [reset, back];
 }

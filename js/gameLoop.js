@@ -20,7 +20,8 @@ function initialize(){
         },
         'player':{
             'input': [],
-            'lives': STARTING_LIVES
+            'lives': STARTING_LIVES,
+            'score': 0
         },
         'options':{
             'show_radius': true,
@@ -32,6 +33,7 @@ function initialize(){
             'state': 'base',
             'buttons': getbaseMenuButtons()
         },
+        'high_scores': loadHighScores(),
         'controls': loadControls(),
         'canvas': canvas,
         'context': context,
