@@ -28,13 +28,22 @@ function renderBackground() {
     canvas = game_data['canvas'];
     context = game_data['context'];
 
-    // Image background
+    // menu background
     context.drawImage(
-        img = game_data.textures['background'],
+        img = game_data.textures['background_menu'],
         x = 0,
         y = 0,
-        width = canvas.width,
-        height = canvas.height
+        width = MENU_WIDTH,
+        height = MENU_HEIGHT
+    );
+
+    // game background
+    context.drawImage(
+        img = game_data.textures['background_game'],
+        x = MENU_WIDTH,
+        y = 0,
+        width = GAME_WIDTH - MENU_WIDTH,
+        height = GAME_HEIGHT
     );
 }
 

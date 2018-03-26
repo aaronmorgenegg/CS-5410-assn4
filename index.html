@@ -2,18 +2,21 @@
 <html lang = "en-US">
 <head>
 	<meta charset = "UTF-8">
-	<title>Breakout Game</title>
+	<title>Tower Defense Game</title>
     <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-	<img id="img-background" width="1" height="1" src="images/background.jpg">
+	<img id="img-background_game" width="1" height="1" src="images/background_game.jpg">
+	<img id="img-background_menu" width="1" height="1" src="images/background_menu.jpg">
 
 	<canvas id = "canvas_main" width = "1600" height = "900"></canvas>
 
 	<script src="js/constants.js"></script>
-	<script src="js/input.js"></script>
 	<script src="js/utils.js"></script>
 	<script src="js/renderUtils.js"></script>
+	<script src="js/input.js"></script>
+	<script src="js/menu/menu.js"></script>
+	<script src="js/menu/menu_rendering.js"></script>
 	<script src="js/gameLoop.js"></script>
 </body>
 </html>

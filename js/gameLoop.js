@@ -4,7 +4,8 @@ function initialize(){
     // Initializes the textures, options, and calls gameLoop
     canvas = document.getElementById('canvas_main');
     context = canvas.getContext('2d');
-    background = document.getElementById("img-background");
+    background_game = document.getElementById("img-background_game");
+    background_menu = document.getElementById("img-background_menu");
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -14,10 +15,22 @@ function initialize(){
             'countdown': 0
         },
         'textures':{
-            'background': background
+            'background_game': background_game,
+            'background_menu': background_menu
         },
         'player':{
-            'input': []
+            'input': [],
+            'lives': STARTING_LIVES
+        },
+        'options':{
+            'show_radius': true,
+            'show_grid': false,
+            'show_path': false,
+            'mute': false
+        },
+        'menu':{
+            'state': 'base',
+            'buttons': getbaseMenuButtons()
         },
         'controls': loadControls(),
         'canvas': canvas,
@@ -44,6 +57,7 @@ function update(){
 
 function render(){
     renderBackground();
+    renderMenu();
 }
 
 function gameLoop(){
