@@ -24,6 +24,19 @@ function drawCircle(context, spec) {
 
 }
 
+function drawText(context, spec){
+    x = spec.x;
+    y = spec.y;
+    color = spec.color;
+    font = spec.font;
+    msg = spec.msg;
+
+    context.fillStyle = color;
+    context.textAlign = 'center';
+    context.font = font;
+    context.fillText(msg, x, y);
+}
+
 function renderBackground() {
     canvas = game_data['canvas'];
     context = game_data['context'];

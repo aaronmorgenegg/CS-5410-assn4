@@ -16,13 +16,10 @@ function renderMenuButton(button){
         }
     );
 
-    context.font=MENU_FONT;
-    context.textAlign="center";
     x += MENU_BUTTON_WIDTH/2;
     y += MENU_BUTTON_HEIGHT/2 + 5;
-    context.fillStyle = MENU_FONT_COLOR;
-    context.fillText(button.display_name, x, y);
 
+    drawText(context, {x:x, y:y, color:MENU_FONT_COLOR, font:MENU_FONT, msg:button.display_name});
 }
 
 function renderButtons(buttons){
@@ -37,4 +34,21 @@ function renderMenu(){
 
 function baseMenuRender(){
     renderButtons(game_data.menu['buttons']);
+}
+
+function creditsMenuRender(){
+    renderButtons(game_data.menu['buttons']);
+    credits = { x:MENU_WIDTH/2,
+                y:MENU_HEIGHT/5,
+                color:MENU_FONT_COLOR,
+                font:MENU_FONT,
+                msg:'Created by'};
+    drawText(game_data.context, credits);
+
+    credits = { x:MENU_WIDTH/2,
+                y:MENU_HEIGHT/5 + 30,
+                color:MENU_FONT_COLOR,
+                font:MENU_FONT,
+                msg:'Aaron Morgenegg'};
+    drawText(game_data.context, credits);
 }
