@@ -4,20 +4,22 @@ function renderMenuButton(button){
 
     x = button.min_x;
     y = button.min_y;
+    width = button.max_x - button.min_x;
+    height = button.max_y - button.min_y;
 
     drawRectangle(context,
         {
             x: x,
             y: y,
-            width: MENU_BUTTON_WIDTH,
-            height: MENU_BUTTON_HEIGHT,
+            width: width,
+            height: height,
             fill: MENU_BUTTON_FILL,
             stroke: MENU_BUTTON_STROKE
         }
     );
 
-    x += MENU_BUTTON_WIDTH/2;
-    y += MENU_BUTTON_HEIGHT/2 + 5;
+    x += width/2;
+    y += height/2 + 10;
 
     drawText(context, {x:x, y:y, color:MENU_FONT_COLOR, font:MENU_FONT, msg:button.display_name});
 }
@@ -57,4 +59,12 @@ function creditsMenuRender(){
 function high_scoresMenuRender(){
     renderButtons(game_data.menu['buttons']);
     renderHighScores();
+}
+
+function optionsMenuRender(){
+    renderButtons(game_data.menu['buttons']);
+}
+
+function controlsMenuRender(){
+    renderButtons(game_data.menu['buttons']);
 }

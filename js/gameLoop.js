@@ -31,7 +31,8 @@ function initialize(){
         },
         'menu':{
             'state': 'base',
-            'buttons': getbaseMenuButtons()
+            'buttons': getbaseMenuButtons(),
+            'rebind': ''
         },
         'high_scores': loadHighScores(),
         'controls': loadControls(),
@@ -47,6 +48,7 @@ function initialize(){
 }
 
 function processInput(){
+    rebindKeys();
     for(i = 0; i < game_data.player['input'].length; i++){
         window[game_data.player['input'][i] + "InputToken"]();
     }

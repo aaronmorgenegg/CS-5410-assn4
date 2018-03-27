@@ -10,6 +10,7 @@ MENU_HEIGHT = GAME_HEIGHT;
 GRID_WIDTH = 45;
 GRID_HEIGHT = 45;
 STARTING_LIVES = 100;
+KEY_TOKENS = ['sell', 'upgrade', 'start_level', 'toggle_grid', 'toggle_radius', 'toggle_path', 'toggle_mute'];
 
 // Rendering options
 
@@ -17,5 +18,5 @@ MENU_FONT = '30px Arial';
 MENU_FONT_COLOR = 'rgba(255, 255, 255, 1)';
 MENU_BUTTON_FILL = 'rgba(100, 80, 145, 1)';
 MENU_BUTTON_STROKE = 'rgba(25, 25, 25, 1)';
-MENU_BUTTON_WIDTH = 240;
+MENU_BUTTON_WIDTH = 320;
 MENU_BUTTON_HEIGHT = 90;

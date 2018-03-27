@@ -7,14 +7,24 @@ function loadControls(){
     }
 }
 
+function keyToChar(key){
+    // Converts given key number to its character value
+    return String.fromCharCode(key);
+}
+
 function onKeyDown(e) {
-    handleKeyToken(e, 'sell');
-    handleKeyToken(e, 'upgrade');
-    handleKeyToken(e, 'start_level');
-    handleKeyToken(e, 'toggle_grid');
-    handleKeyToken(e, 'toggle_radius');
-    handleKeyToken(e, 'toggle_path');
-    handleKeyToken(e, 'toggle_mute');
+    if(game_data.menu['rebind']===''){
+        for(i = 0; i < KEY_TOKENS.length; i++){
+            handleKeyToken(e, KEY_TOKENS[i]);
+        }
+    } else {
+        for(i = 0; i < game_data['controls'].length; i++){
+            if(game_data['controls'][i] === e.keyCode){
+                return;
+            }
+        }
+        game_data.player['input'].push(e.keyCode);
+    }
 }
 
 function handleKeyToken(e, token){
@@ -30,7 +40,7 @@ function onMouseClick(){
     if(x < MENU_WIDTH){
         handleMenuClick(x, y);
     } else {
-        // handleGameClick(x, y);
+        // handleGameClick(x, y); // TODO
     }
 }
 
@@ -39,6 +49,22 @@ function mouseInRange(x, y, min_x, max_x, min_y, max_y){
         return true;
     }
     return false;
+}
+
+function rebindKeys(){
+    // Rebind keys if appropriate
+    token = game_data.menu['rebind'];
+    if(token !== '') {
+        if (game_data.player['input'].length > 0) {
+            game_data.controls[token] = game_data.player['input'][0];
+            game_data.player['input'].shift();
+            key = keyToChar(game_data.controls[token]);
+            updateDisplayName(token, key);
+            game_data.menu['rebind'] = '';
+        } else {
+            updateDisplayName(token, '_');
+        }
+    }
 }
 
 function resetInput(){
