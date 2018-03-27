@@ -68,3 +68,7 @@ function optionsMenuRender(){
 function controlsMenuRender(){
     renderButtons(game_data.menu['buttons']);
 }
+
+function gameMenuRender(){
+    renderButtons(game_data.menu['buttons']);
+}

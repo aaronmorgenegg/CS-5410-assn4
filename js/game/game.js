@@ -5,3 +5,9 @@ function resetGame(){
     game_data.player['score'] = 0;
     game_data.particles = [];
 }
+
+function endGame(){
+    saveHighScores();
+    saveControls();
+    window.close();
+}

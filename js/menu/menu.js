@@ -51,13 +51,45 @@ function getMenuButtonsTemplate(spec){
     return buttons;
 }
 
+function getMenuButtonsGrid(spec){
+    display_names = spec.display_names;
+    internal_names = spec.internal_names;
+    width = spec.width;
+    height = spec.height;
+    x = spec.x;
+    y = spec.y;
+    offset = spec.offset;
+
+    buttons = [];
+    min_x = x;
+    max_x = min_x + width;
+    min_y = y;
+    max_y = min_y + height;
+    x_offset = width + offset;
+    y_offset = height + offset;
+
+    for(i = 0; i < internal_names.length; i++){
+        buttons.push({'min_x': min_x, 'min_y': min_y, 'max_x': max_x, 'max_y': max_y, 'internal_name': internal_names[i], 'display_name': display_names[i]});
+        min_x += x_offset;
+        max_x += x_offset;
+
+        if(max_x >= MENU_WIDTH - x){
+            min_y += y_offset;
+            max_y += y_offset;
+            min_x = x;
+            max_x = min_x + width;
+        }
+    }
+    return buttons;
+}
+
 function getMenuButtons(){
     return window['get' + game_data.menu['state'] + 'MenuButtons']();
 }
 
 function getbaseMenuButtons(){
-    display_names = ['New Game', 'Options', 'High Scores', 'Credits', 'Back'];
-    internal_names = ['new_game', 'options', 'high_scores', 'credits', 'back'];
+    display_names = ['End Game', 'New Game', 'Options', 'High Scores', 'Credits', 'Back'];
+    internal_names = ['end_game', 'new_game', 'options', 'high_scores', 'credits', 'back'];
     offset = MENU_HEIGHT/internal_names.length - MENU_BUTTON_HEIGHT/2;
     x = MENU_WIDTH/2 - MENU_BUTTON_WIDTH/2;
     y = offset;
@@ -77,7 +109,7 @@ function getbaseMenuButtons(){
 function getcreditsMenuButtons(){
     min_x = MENU_WIDTH/2 - MENU_BUTTON_WIDTH/2;
     max_x = min_x + MENU_BUTTON_WIDTH;
-    min_y = MENU_HEIGHT - MENU_BUTTON_HEIGHT*2.5;
+    min_y = MENU_HEIGHT - MENU_BUTTON_HEIGHT*3;
     max_y = min_y + MENU_BUTTON_HEIGHT;
 
     back = {'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'back', 'display_name': 'Back'}
@@ -87,11 +119,11 @@ function getcreditsMenuButtons(){
 function gethigh_scoresMenuButtons(){
     min_x = MENU_WIDTH/2 - MENU_BUTTON_WIDTH/2;
     max_x = min_x + MENU_BUTTON_WIDTH;
-    min_y = MENU_HEIGHT - MENU_BUTTON_HEIGHT*2.5;
+    min_y = MENU_HEIGHT - MENU_BUTTON_HEIGHT*3;
     max_y = min_y + MENU_BUTTON_HEIGHT;
     back = {'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'back', 'display_name': 'Back'}
-    min_y -= MENU_BUTTON_HEIGHT * 1.5;
-    max_y -= MENU_BUTTON_HEIGHT * 1.5;
+    min_y -= MENU_BUTTON_HEIGHT * 1.17;
+    max_y -= MENU_BUTTON_HEIGHT * 1.17;
     reset = {'min_x': min_x, 'max_x': max_x, 'min_y': min_y, 'max_y': max_y, 'internal_name': 'reset', 'display_name': 'Reset'}
     return [reset, back];
 }
@@ -148,9 +180,36 @@ function getcontrolsMenuButtons(){
     return getMenuButtonsTemplate(spec);
 }
 
+function getgameMenuButtons(){
+    display_names = ['Menu', 'Start', 'Sell', 'Cancel', 'Upgrade', 'Bullet', 'Bomb', 'Laser', 'Missile'];
+    internal_names = ['menu', 'start_level', 'sell', 'cancel', 'upgrade', 'bullet_tower', 'bomb_tower', 'laser_tower', 'missile_tower'];
+    x = 10;
+    y = 10;
+    offset = 9;
+    width = 120;
+    height = 120;
+
+    spec = {
+        display_names: display_names,
+        internal_names: internal_names,
+        offset:offset,
+        width:width,
+        height:height,
+        x:x,
+        y:y
+    };
+    buttons = getMenuButtonsGrid(spec);
+    return buttons;
+
+}
+
 
 // ----- BASE BUTTONS
 
+
+function base_end_gameButton(){
+    endGame();
+}
 
 function base_new_gameButton(){
     resetGame();
@@ -169,7 +228,7 @@ function base_creditsButton(){
 }
 
 function base_backButton(){
-    console.log('Back Button Pressed!');
+    setMenuState('game');
 }
 
 
@@ -254,4 +313,42 @@ function controls_toggle_muteButton(){
 
 function controls_backButton(){
     if(game_data.menu['rebind']==='')setMenuState('options');
+}
+
+// ----- GAME BUTTONS
+
+function game_menuButton(){
+    setMenuState('base');
+}
+
+function game_start_levelButton(){
+    console.log('Start Level button pressed!');
+}
+
+function game_sellButton(){
+    console.log('Sell button pressed!');
+}
+
+function game_cancelButton(){
+    console.log('Cancel button pressed!');
+}
+
+function game_upgradeButton(){
+    console.log('Upgrade button pressed!');
+}
+
+function game_bullet_towerButton(){
+    console.log('Bullet Tower button pressed!');
+}
+
+function game_bomb_towerButton(){
+    console.log('Bomb Tower button pressed!');
+}
+
+function game_laser_towerButton(){
+    console.log('Laser tower button pressed!');
+}
+
+function game_missile_towerButton(){
+    console.log('Missile tower button pressed!');
 }

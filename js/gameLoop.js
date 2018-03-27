@@ -30,8 +30,8 @@ function initialize(){
             'mute': false
         },
         'menu':{
-            'state': 'base',
-            'buttons': getbaseMenuButtons(),
+            'state': 'game',
+            'buttons': getgameMenuButtons(),
             'rebind': ''
         },
         'high_scores': loadHighScores(),
