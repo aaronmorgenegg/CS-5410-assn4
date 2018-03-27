@@ -7,6 +7,10 @@ function loadControls(){
     }
 }
 
+function saveControls(){
+    localStorage['controls'] = JSON.stringify(game_data['controls']);
+}
+
 function keyToChar(key){
     // Converts given key number to its character value
     return String.fromCharCode(key);
@@ -61,6 +65,7 @@ function rebindKeys(){
             key = keyToChar(game_data.controls[token]);
             updateDisplayName(token, key);
             game_data.menu['rebind'] = '';
+            saveControls();
         } else {
             updateDisplayName(token, '_');
         }

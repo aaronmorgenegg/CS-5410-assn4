@@ -97,7 +97,12 @@ function gethigh_scoresMenuButtons(){
 }
 
 function getoptionsMenuButtons(){
-    display_names = ['Controls', 'Show Placement Grid', 'Show Tower Coverage', 'Show Creep Path', 'Mute', 'Back'];
+    display_names = ['Controls',
+                     'Show Placement Grid('+keyToChar(game_data.controls['toggle_grid']) + ')',
+                     'Show Tower Range('+keyToChar(game_data.controls['toggle_radius']) + ')',
+                     'Show Creep Path('+keyToChar(game_data.controls['toggle_path']) + ')',
+                     'Mute('+keyToChar(game_data.controls['toggle_mute']) + ')',
+                     'Back'];
     internal_names = ['controls', 'show_grid', 'show_radius', 'show_path', 'mute', 'back'];
     offset = MENU_HEIGHT/internal_names.length - MENU_BUTTON_HEIGHT/2;
     x = MENU_WIDTH/2 - MENU_BUTTON_WIDTH/2;
@@ -196,19 +201,19 @@ function options_backButton(){
 }
 
 function options_muteButton(){
-    console.log('Options Mute Button Pressed!');
+    game_data.options['mute'] = !game_data.options['mute'];
 }
 
 function options_show_pathButton(){
-    console.log('Options show path button pressed!');
+    game_data.options['show_path'] = !game_data.options['show_path'];
 }
 
 function options_show_radiusButton(){
-    console.log('Options show radius button pressed!');
+    game_data.options['show_radius'] = !game_data.options['show_radius'];
 }
 
 function options_show_gridButton(){
-    console.log('Options show grid button pressed!');
+    game_data.options['show_grid'] = !game_data.options['show_grid'];
 }
 
 function options_controlsButton(){
