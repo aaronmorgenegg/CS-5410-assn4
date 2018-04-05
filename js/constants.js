@@ -7,9 +7,12 @@ GAME_WIDTH = 1600; // Note that you'll have to change the canvas size in index.h
 GAME_HEIGHT = 900; // Note that you'll have to change the canvas size in index.html as well
 MENU_WIDTH = 400; // This is set up to have the menu on the left side, leaving a square play area
 MENU_HEIGHT = GAME_HEIGHT;
-GRID_WIDTH = 45;
-GRID_HEIGHT = 45;
+GRID_WIDTH = 48;
+GRID_HEIGHT = 36;
 STARTING_LIVES = 100;
+STARTING_MONEY = 100;
+LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
+UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 
 // Rendering options
 

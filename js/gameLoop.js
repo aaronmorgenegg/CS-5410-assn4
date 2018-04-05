@@ -21,6 +21,7 @@ function initialize(){
         'player':{
             'input': [],
             'lives': STARTING_LIVES,
+            'money': STARTING_MONEY,
             'score': 0
         },
         'options':{
@@ -34,6 +35,7 @@ function initialize(){
             'buttons': getgameMenuButtons(),
             'rebind': ''
         },
+        'map': getBaseMap(),
         'high_scores': loadHighScores(),
         'controls': loadControls(),
         'canvas': canvas,
@@ -62,6 +64,7 @@ function update(){
 function render(){
     renderBackground();
     renderMenu();
+    renderMap();
 }
 
 function gameLoop(){

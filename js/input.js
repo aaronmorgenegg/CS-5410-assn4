@@ -43,8 +43,8 @@ function onMouseClick(){
 
     if(x < MENU_WIDTH){
         handleMenuClick(x, y);
-    } else {
-        // handleGameClick(x, y); // TODO
+    } else if(x >= MENU_WIDTH && x <= GAME_WIDTH){
+        handleGameClick(x, y);
     }
 }
 
