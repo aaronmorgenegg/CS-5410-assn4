@@ -7,8 +7,10 @@ GAME_WIDTH = 1600; // Note that you'll have to change the canvas size in index.h
 GAME_HEIGHT = 900; // Note that you'll have to change the canvas size in index.html as well
 MENU_WIDTH = 400; // This is set up to have the menu on the left side, leaving a square play area
 MENU_HEIGHT = GAME_HEIGHT;
-GRID_WIDTH = 48;
-GRID_HEIGHT = 36;
+GRID_WIDTH = 36;
+GRID_HEIGHT = 27;
+CELL_WIDTH = (GAME_WIDTH - MENU_WIDTH)/GRID_WIDTH;
+CELL_HEIGHT = GAME_HEIGHT/GRID_HEIGHT;
 STARTING_LIVES = 100;
 STARTING_MONEY = 100;
 LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
@@ -22,6 +24,8 @@ MENU_BUTTON_FILL = 'rgba(100, 100, 100, 1)';
 MENU_BUTTON_STROKE = 'rgba(25, 25, 25, 1)';
 MENU_BUTTON_WIDTH = 360;
 MENU_BUTTON_HEIGHT = 90;
+BLACK_COLOR = 'rgba(0,0,0,1)';
+TRANSPARENT_COLOR = 'rgba(0,0,0,0)';
 
 // Constants - No Touching!
 KEY_TOKENS = ['sell', 'upgrade', 'start_level', 'toggle_grid', 'toggle_radius', 'toggle_path', 'toggle_mute'];

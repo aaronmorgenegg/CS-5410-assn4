@@ -27,7 +27,7 @@ function getMapCoords(indices){
 
     coords = {};
     x_scalar = x/GRID_WIDTH;
-    coords['x'] = Math.floor(x_scalar * (GAME_WIDTH));
+    coords['x'] = Math.floor(x_scalar * (GAME_WIDTH - MENU_WIDTH)) + MENU_WIDTH;
     y_scalar = y/GRID_HEIGHT;
     coords['y'] = Math.floor(y_scalar * GAME_HEIGHT);
 
@@ -55,20 +55,19 @@ function renderMap(){
 }
 
 function renderGrid(){
-    for(i = 0; i < GAME_WIDTH; i++){
-        for(j = 0; j < GAME_HEIGHT; j++){
-            col.push(getCell());
+    for(i = 0; i < GRID_WIDTH; i++){
+        for(j = 0; j < GRID_HEIGHT; j++){
+            coords = getMapCoords({'x':i,'y':j});
+            drawRectangle(game_data.context,
+                {
+                    x: coords.x,
+                    y: coords.y,
+                    width: CELL_WIDTH,
+                    height: CELL_HEIGHT,
+                    fill: TRANSPARENT_COLOR,
+                    stroke: BLACK_COLOR
+                }
+            );
         }
-        map.push(col);
     }
-    drawRectangle(context,
-        {
-            x: x,
-            y: y,
-            width: width,
-            height: height,
-            fill: MENU_BUTTON_FILL,
-            stroke: MENU_BUTTON_STROKE
-        }
-    );
 }
