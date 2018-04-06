@@ -1,3 +1,5 @@
+// ----- CONTROLS -----
+
 function loadControls(){
     controls = localStorage['controls'];
     if(controls !== undefined){
@@ -37,24 +39,6 @@ function handleKeyToken(e, token){
     }
 }
 
-function onMouseClick(){
-    x = event.x - game_data.canvas.offsetLeft;
-    y = event.y - game_data.canvas.offsetTop;
-
-    if(x < MENU_WIDTH){
-        handleMenuClick(x, y);
-    } else if(x >= MENU_WIDTH && x <= GAME_WIDTH){
-        handleGameClick(x, y);
-    }
-}
-
-function mouseInRange(x, y, min_x, max_x, min_y, max_y){
-    if(x >= min_x && x <= max_x && y >= min_y && y <= max_y){
-        return true;
-    }
-    return false;
-}
-
 function rebindKeys(){
     // Rebind keys if appropriate
     token = game_data.menu['rebind'];
@@ -75,6 +59,35 @@ function rebindKeys(){
 function resetInput(){
     game_data.player['input'] = [];
 }
+
+
+// ----- MOUSE INPUT -----
+
+function onMouseClick(){
+    x = event.x - game_data.canvas.offsetLeft;
+    y = event.y - game_data.canvas.offsetTop;
+
+    if(x < MENU_WIDTH){
+        handleMenuClick(x, y);
+    } else if(x >= MENU_WIDTH && x <= GAME_WIDTH){
+        handleGameClick(x, y);
+    }
+}
+
+function handleGameClick(x, y){
+    indices = getMapIndices({'x':x, 'y':y});
+    window[game_data.state['input'] + 'MouseInput'](indices);
+}
+
+function baseMouseInput(indices){
+    console.log('Base Mouse state detected');
+}
+
+function buildBulletTower1MouseInput(indices){
+    getBulletTower(indices);
+}
+
+// ----- KEYBOARD INPUT TOKENS -----
 
 function sellInputToken(){
     console.log("Sell token received!");

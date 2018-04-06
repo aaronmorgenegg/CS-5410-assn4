@@ -338,7 +338,7 @@ function game_upgradeButton(){
 }
 
 function game_bullet_towerButton(){
-    console.log('Bullet Tower button pressed!');
+    game_data.state['input'] = 'buildBulletTower1';
 }
 
 function game_bomb_towerButton(){

@@ -13,6 +13,3 @@ function endGame(){
     window.close();
 }
 
-function handleGameClick(x, y){
-    indices = getMapIndices({'x':x, 'y':y});
-}

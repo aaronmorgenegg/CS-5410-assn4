@@ -50,6 +50,40 @@ function getCell(){
     return 'empty';
 }
 
+function getAdjacentCells(indices){
+    // Returns a list of the adjacent cell indices, including the given cell
+    x = indices.x;
+    y = indices.y;
+    map = game_data.map;
+    if(x < 1 || x > GRID_WIDTH-2 || y < 1 || y > GRID_HEIGHT-2){
+        return undefined;
+    }
+    return [
+            {'x':x-1,'y':y-1},{'x':x,'y':y-1},{'x':x+1,'y':y-1},
+            {'x':x-1,'y':y},{'x':x,'y':y},{'x':x+1,'y':y},
+            {'x':x-1,'y':y+1},{'x':x,'y':y+1},{'x':x+1,'y':y+1}
+            ];
+}
+
+function setListOfCells(list, value){
+    // Assign every cell in the list to the given value
+    for(i = 0; i < list.length; i++){
+        x = list[i]['x'];
+        y = list[i]['y'];
+        map[x][y] = value;
+    }
+}
+
+function checkListOfCellsEquality(list, state){
+    // Return true if every cell in the list is in the given state
+    for(i = 0; i < list.length; i++){
+        x = list[i]['x'];
+        y = list[i]['y'];
+        if(map[x][y] !== state) return false;
+    }
+    return true;
+}
+
 function getMapCoords(indices){
     // Given map[x][y], return the cartesian coordinates of the top left corner of that tile
     x = indices.x;

@@ -24,9 +24,7 @@ function initialize(){
             'input': [],
             'lives': STARTING_LIVES,
             'money': STARTING_MONEY,
-            'score': 0,
-            'selection': 'none',
-            'input_state': 'base'
+            'score': 0
         },
         'options':{
             'show_radius': true,
@@ -38,6 +36,10 @@ function initialize(){
             'state': 'game',
             'buttons': getgameMenuButtons(),
             'rebind': ''
+        },
+        'state':{
+            'input': 'base',
+            'selection': 'none'
         },
         'map': getBaseMap(),
         'high_scores': loadHighScores(),
