@@ -6,6 +6,7 @@ function initialize(){
     context = canvas.getContext('2d');
     background_game = document.getElementById("img-background_game");
     background_menu = document.getElementById("img-background_menu");
+    wall = document.getElementById("img-wall");
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -16,7 +17,8 @@ function initialize(){
         },
         'textures':{
             'background_game': background_game,
-            'background_menu': background_menu
+            'background_menu': background_menu,
+            'wall': wall
         },
         'player':{
             'input': [],

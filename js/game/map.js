@@ -1,7 +1,9 @@
 function getBaseMap(){
     // Return a basic map object, with grid and walls defined.
-    empty_map = getEmptyMap();
-    // TODO set walls and exits for map
+    map = getEmptyMap();
+    setMapWalls(map);
+
+    return map;
 }
 
 function getEmptyMap(){
@@ -14,6 +16,24 @@ function getEmptyMap(){
         map.push(col);
     }
     return map;
+}
+
+function setMapWalls(map){
+    wall_width = (GRID_WIDTH - UD_GATE_SIZE)/2;
+    for(i = 0; i < wall_width; i++){
+        map[i][0] = 'wall';
+        map[GRID_WIDTH-i-1][0] = 'wall';
+        map[i][GRID_HEIGHT-1] = 'wall';
+        map[GRID_WIDTH-i-1][GRID_HEIGHT-1] = 'wall';
+    }
+
+    wall_height = (GRID_HEIGHT - LR_GATE_SIZE)/2;
+    for(i = 0; i < wall_height; i++){
+        map[0][i] = 'wall';
+        map[0][GRID_HEIGHT-i-1] = 'wall';
+        map[GRID_WIDTH-1][i] = 'wall';
+        map[GRID_WIDTH-1][GRID_HEIGHT-i-1] = 'wall';
+    }
 }
 
 function getCell(){
@@ -49,25 +69,44 @@ function getMapIndices(coords){
 }
 
 function renderMap(){
-    if(game_data.options['show_grid'] === true){
-        renderGrid();
+    for(i = 0; i < GRID_WIDTH; i++){
+        for(j = 0; j < GRID_HEIGHT; j++){
+            renderCell({'x':i,'y':j});
+        }
     }
 }
 
-function renderGrid(){
-    for(i = 0; i < GRID_WIDTH; i++){
-        for(j = 0; j < GRID_HEIGHT; j++){
-            coords = getMapCoords({'x':i,'y':j});
-            drawRectangle(game_data.context,
-                {
-                    x: coords.x,
-                    y: coords.y,
-                    width: CELL_WIDTH,
-                    height: CELL_HEIGHT,
-                    fill: TRANSPARENT_COLOR,
-                    stroke: BLACK_COLOR
-                }
-            );
-        }
+function renderCell(indices){
+    cell = game_data.map[indices.x][indices.y];
+    coords = getMapCoords(indices);
+
+    if(game_data.options['show_grid']){
+        renderGrid(coords);
     }
+    if(cell === 'wall'){
+        renderWall(coords);
+    }
+}
+
+function renderGrid(coords){
+    drawRectangle(game_data.context,
+        {
+            x: coords.x,
+            y: coords.y,
+            width: CELL_WIDTH,
+            height: CELL_HEIGHT,
+            fill: TRANSPARENT_COLOR,
+            stroke: BLACK_COLOR
+        }
+    );
+}
+
+function renderWall(coords){
+    context.drawImage(
+        img = game_data.textures['wall'],
+        x = coords.x,
+        y = coords.y,
+        width = CELL_WIDTH,
+        height = CELL_HEIGHT
+    );
 }
