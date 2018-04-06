@@ -27,12 +27,22 @@ function setMapWalls(map){
         map[GRID_WIDTH-i-1][GRID_HEIGHT-1] = 'wall';
     }
 
+    for(i = wall_width; i < wall_width+UD_GATE_SIZE; i++){
+        map[i][0] = 'entrance';
+        map[i][GRID_HEIGHT-1] = 'exit';
+    }
+
     wall_height = (GRID_HEIGHT - LR_GATE_SIZE)/2;
     for(i = 0; i < wall_height; i++){
         map[0][i] = 'wall';
         map[0][GRID_HEIGHT-i-1] = 'wall';
         map[GRID_WIDTH-1][i] = 'wall';
         map[GRID_WIDTH-1][GRID_HEIGHT-i-1] = 'wall';
+    }
+
+    for(i = wall_height; i < wall_height+LR_GATE_SIZE; i++){
+        map[0][i] = 'entrance';
+        map[GRID_WIDTH-1][i] = 'exit';
     }
 }
 
@@ -80,11 +90,12 @@ function renderCell(indices){
     cell = game_data.map[indices.x][indices.y];
     coords = getMapCoords(indices);
 
-    if(game_data.options['show_grid']){
-        renderGrid(coords);
-    }
     if(cell === 'wall'){
         renderWall(coords);
+    }
+
+    if(game_data.options['show_grid']){
+        renderGrid(coords);
     }
 }
 

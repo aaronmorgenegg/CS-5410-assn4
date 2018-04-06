@@ -24,7 +24,9 @@ function initialize(){
             'input': [],
             'lives': STARTING_LIVES,
             'money': STARTING_MONEY,
-            'score': 0
+            'score': 0,
+            'selection': 'none',
+            'input_state': 'base'
         },
         'options':{
             'show_radius': true,
