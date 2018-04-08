@@ -11,6 +11,16 @@ function drawRectangle(context, spec) {
 
 }
 
+function renderCellImage(coords, image){
+    context.drawImage(
+        img = game_data.textures[image],
+        x = coords.x,
+        y = coords.y,
+        width = CELL_WIDTH,
+        height = CELL_HEIGHT
+    );
+}
+
 function drawCircle(context, spec) {
     context.beginPath();
 

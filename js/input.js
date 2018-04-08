@@ -84,7 +84,19 @@ function baseMouseInput(indices){
 }
 
 function buildBulletTower1MouseInput(indices){
-    getBulletTower(indices);
+    getTower(indices, 'bullet1');
+}
+
+function buildBombTower1MouseInput(indices){
+    getTower(indices, 'bomb1');
+}
+
+function buildLaserTower1MouseInput(indices){
+    getTower(indices, 'laser1');
+}
+
+function buildMissileTower1MouseInput(indices){
+    getTower(indices, 'missile1');
 }
 
 // ----- KEYBOARD INPUT TOKENS -----

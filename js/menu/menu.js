@@ -330,7 +330,7 @@ function game_sellButton(){
 }
 
 function game_cancelButton(){
-    console.log('Cancel button pressed!');
+    game_data.state['input'] = 'base';
 }
 
 function game_upgradeButton(){
@@ -342,13 +342,13 @@ function game_bullet_towerButton(){
 }
 
 function game_bomb_towerButton(){
-    console.log('Bomb Tower button pressed!');
+    game_data.state['input'] = 'buildBombTower1';
 }
 
 function game_laser_towerButton(){
-    console.log('Laser tower button pressed!');
+    game_data.state['input'] = 'buildLaserTower1';
 }
 
 function game_missile_towerButton(){
-    console.log('Missile tower button pressed!');
+    game_data.state['input'] = 'buildMissileTower1';
 }

@@ -124,9 +124,7 @@ function renderCell(indices){
     cell = game_data.map[indices.x][indices.y];
     coords = getMapCoords(indices);
 
-    if(cell === 'wall'){
-        renderWall(coords);
-    }
+    if(cell !== 'empty') renderCellImage(coords, cell);
 
     if(game_data.options['show_grid']){
         renderGrid(coords);
@@ -143,15 +141,5 @@ function renderGrid(coords){
             fill: TRANSPARENT_COLOR,
             stroke: BLACK_COLOR
         }
-    );
-}
-
-function renderWall(coords){
-    context.drawImage(
-        img = game_data.textures['wall'],
-        x = coords.x,
-        y = coords.y,
-        width = CELL_WIDTH,
-        height = CELL_HEIGHT
     );
 }

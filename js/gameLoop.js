@@ -7,6 +7,12 @@ function initialize(){
     background_game = document.getElementById("img-background_game");
     background_menu = document.getElementById("img-background_menu");
     wall = document.getElementById("img-wall");
+    entrance = document.getElementById("img-entrance");
+    exit = document.getElementById("img-exit");
+    bullet1 = document.getElementById("img-bullet1");
+    bomb1 = document.getElementById("img-bomb1");
+    laser1 = document.getElementById("img-laser1");
+    missile1 = document.getElementById("img-missile1");
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -18,7 +24,13 @@ function initialize(){
         'textures':{
             'background_game': background_game,
             'background_menu': background_menu,
-            'wall': wall
+            'wall': wall,
+            'entrance': entrance,
+            'exit': exit,
+            'bullet1': bullet1,
+            'bomb1': bomb1,
+            'laser1': laser1,
+            'missile1': missile1
         },
         'player':{
             'input': [],
