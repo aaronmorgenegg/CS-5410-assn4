@@ -336,7 +336,7 @@ function game_cancelButton(){
 }
 
 function game_upgradeButton(){
-    console.log('Upgrade button pressed!');
+    upgradeTower();
 }
 
 function game_bullet_towerButton(){

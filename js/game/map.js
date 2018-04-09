@@ -129,7 +129,7 @@ function renderCell(indices){
        indices.y === game_data.state.selection['coords']['y']){
         renderCellImage(coords, 'selection');
     }
-    
+
     if(cell !== 'empty') renderCellImage(coords, cell);
 
     if(game_data.options['show_radius'] && isTower(cell)) {

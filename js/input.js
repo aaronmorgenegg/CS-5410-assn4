@@ -114,7 +114,7 @@ function sellInputToken(){
 }
 
 function upgradeInputToken(){
-    console.log("Upgrade token received!");
+    upgradeTower();
 }
 
 function start_levelInputToken(){
