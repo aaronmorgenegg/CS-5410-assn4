@@ -1,4 +1,7 @@
 function getTower(indices, tower){
+    if(getTowerCost(tower) > game_data.player['money']){
+        return;
+    }
     x = indices.x;
     y = indices.y;
     cell = map[x][y];
@@ -8,6 +11,7 @@ function getTower(indices, tower){
         return;
     } else {
         map[x][y] = tower;
+        game_data.player['money'] -= getTowerCost(tower);
     }
 }
 
@@ -25,4 +29,11 @@ function getTowerRange(tower){
     else if(tower === 'bomb1') return BOMB1_RANGE;
     else if(tower === 'missile1') return MISSILE1_RANGE;
     else if(tower === 'laser1') return LASER1_RANGE;
+}
+
+function getTowerCost(tower){
+    if(tower === 'bullet1') return BULLET1_COST;
+    else if(tower === 'bomb1') return BOMB1_COST;
+    else if(tower === 'missile1') return MISSILE1_COST;
+    else if(tower === 'laser1') return LASER1_COST;
 }

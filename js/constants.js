@@ -17,9 +17,13 @@ LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
 UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 
 BULLET1_RANGE = 5;
+BULLET1_COST = 10;
 BOMB1_RANGE = 4;
+BOMB1_COST = 25;
 LASER1_RANGE = 6;
+LASER1_COST = 10;
 MISSILE1_RANGE = 7;
+MISSILE1_COST = 20;
 
 // Rendering options
 
