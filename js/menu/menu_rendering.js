@@ -90,6 +90,8 @@ function renderHUD(){
 
     renderHUDElement('money', 10, MENU_HEIGHT/2);
     renderHUDElement('lives', MENU_WIDTH/2, MENU_HEIGHT/2);
+
+    renderSelection();
 }
 
 function renderHUDElement(element, x, y){
@@ -102,5 +104,33 @@ function renderHUDElement(element, x, y){
     );
     drawText(game_data.context,
         {x:x + 100, y:y + 30, color:MENU_FONT_COLOR, font:MENU_FONT, msg:game_data.player[element]}
+        );
+}
+
+function renderSelection(){
+    if(game_data.state['selection'] === 'none') return;
+    if(isTower(game_data.state['selection'])) {
+        drawText(game_data.context,
+            {x:MENU_WIDTH/2, y:MENU_HEIGHT/2+70, color:MENU_FONT_COLOR, font:MENU_FONT, msg:getTowerDisplayName(game_data.state['selection'])}
+        );
+        game_data.context.drawImage(
+            game_data.textures[game_data.state['selection']],
+            MENU_WIDTH/2 - 25,
+            MENU_HEIGHT/2 + 90,
+            50,
+            50
+        );
+        renderSelectionElement('Cost', getTowerCost(game_data.state['selection']), MENU_WIDTH/2, MENU_HEIGHT/2 + 175);
+        renderSelectionElement('Range', getTowerRange(game_data.state['selection']), MENU_WIDTH/2, MENU_HEIGHT/2 + 215);
+        renderSelectionElement('Damage', getTowerDamage(game_data.state['selection']), MENU_WIDTH/2, MENU_HEIGHT/2 + 255);
+        renderSelectionElement('Fire Rate', getTowerSpeed(game_data.state['selection']), MENU_WIDTH/2, MENU_HEIGHT/2 + 295);
+        renderSelectionElement('Splash', getTowerSplash(game_data.state['selection']), MENU_WIDTH/2, MENU_HEIGHT/2 + 335);
+        renderSelectionElement('Targeting', getTowerTargeting(game_data.state['selection']), MENU_WIDTH/2, MENU_HEIGHT/2 + 375);
+    }
+}
+
+function renderSelectionElement(element, data, x, y){
+    drawText(game_data.context,
+        {x:x, y:y, color:MENU_FONT_COLOR, font:MENU_FONT, msg:element+ '  :  ' + data}
         );
 }

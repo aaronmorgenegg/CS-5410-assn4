@@ -16,14 +16,39 @@ STARTING_MONEY = 100;
 LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
 UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 
+// Tower Stats
+
+BULLET1_DISPLAY = 'Bullet Tower lvl 1';
 BULLET1_RANGE = 5;
+BULLET1_DAMAGE = 3;
+BULLET1_SPEED = 3;
+BULLET1_SPLASH = false;
+BULLET1_TARGETING = 'ground';
 BULLET1_COST = 10;
+
+BOMB1_DISPLAY = 'Bomb Tower lvl 1';
 BOMB1_RANGE = 4;
+BOMB1_DAMAGE = 2;
+BOMB1_SPEED = 2;
+BOMB1_SPLASH = true;
+BOMB1_TARGETING = 'ground';
 BOMB1_COST = 25;
-LASER1_RANGE = 6;
-LASER1_COST = 10;
-MISSILE1_RANGE = 7;
-MISSILE1_COST = 20;
+
+LASER1_DISPLAY = 'Laser Tower lvl 1';
+LASER1_RANGE = 8;
+LASER1_DAMAGE = 4;
+LASER1_SPEED = 5;
+LASER1_SPLASH = false;
+LASER1_TARGETING = 'air';
+LASER1_COST = 15;
+
+MISSILE1_DISPLAY = 'Missile Tower lvl 1';
+MISSILE1_RANGE = 10;
+MISSILE1_DAMAGE = 3;
+MISSILE1_SPEED = 1;
+MISSILE1_SPLASH = true;
+MISSILE1_TARGETING = 'air';
+MISSILE1_COST = 30;
 
 // Rendering options
 

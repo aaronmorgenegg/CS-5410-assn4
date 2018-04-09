@@ -80,7 +80,13 @@ function handleGameClick(x, y){
 }
 
 function baseMouseInput(indices){
-    console.log('Base Mouse state detected');
+    x = indices.x;
+    y = indices.y;
+    if(isTower(map[x][y])){
+        game_data.state['selection'] = map[x][y];
+    } else {
+        game_data.state['selection'] = 'none';
+    }
 }
 
 function buildBulletTower1MouseInput(indices){

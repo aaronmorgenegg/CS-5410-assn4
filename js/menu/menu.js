@@ -331,6 +331,7 @@ function game_sellButton(){
 
 function game_cancelButton(){
     game_data.state['input'] = 'base';
+    game_data.state['selection'] = 'none';
 }
 
 function game_upgradeButton(){
@@ -339,16 +340,20 @@ function game_upgradeButton(){
 
 function game_bullet_towerButton(){
     game_data.state['input'] = 'buildBulletTower1';
+    game_data.state['selection'] = 'bullet1';
 }
 
 function game_bomb_towerButton(){
     game_data.state['input'] = 'buildBombTower1';
+    game_data.state['selection'] = 'bomb1';
 }
 
 function game_laser_towerButton(){
     game_data.state['input'] = 'buildLaserTower1';
+    game_data.state['selection'] = 'laser1';
 }
 
 function game_missile_towerButton(){
     game_data.state['input'] = 'buildMissileTower1';
+    game_data.state['selection'] = 'missile1';
 }

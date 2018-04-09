@@ -9,9 +9,12 @@ function getTower(indices, tower){
     if(adjacent_cells === undefined){
         console.log('Adjacent cells undefined');
         return;
-    } else {
+    } else if(cell === 'empty'){
         map[x][y] = tower;
         game_data.player['money'] -= getTowerCost(tower);
+    } else {
+        console.log('Cell is invalid.');
+        return;
     }
 }
 
@@ -36,4 +39,39 @@ function getTowerCost(tower){
     else if(tower === 'bomb1') return BOMB1_COST;
     else if(tower === 'missile1') return MISSILE1_COST;
     else if(tower === 'laser1') return LASER1_COST;
+}
+
+function getTowerDisplayName(tower){
+    if(tower === 'bullet1') return BULLET1_DISPLAY;
+    else if(tower === 'bomb1') return BOMB1_DISPLAY;
+    else if(tower === 'missile1') return MISSILE1_DISPLAY;
+    else if(tower === 'laser1') return LASER1_DISPLAY;
+}
+
+function getTowerDamage(tower){
+    if(tower === 'bullet1') return BULLET1_DAMAGE;
+    else if(tower === 'bomb1') return BOMB1_DAMAGE;
+    else if(tower === 'missile1') return MISSILE1_DAMAGE;
+    else if(tower === 'laser1') return LASER1_DAMAGE;
+}
+
+function getTowerSpeed(tower){
+    if(tower === 'bullet1') return BULLET1_SPEED;
+    else if(tower === 'bomb1') return BOMB1_SPEED;
+    else if(tower === 'missile1') return MISSILE1_SPEED;
+    else if(tower === 'laser1') return LASER1_SPEED;
+}
+
+function getTowerSplash(tower){
+    if(tower === 'bullet1') return BULLET1_SPLASH;
+    else if(tower === 'bomb1') return BOMB1_SPLASH;
+    else if(tower === 'missile1') return MISSILE1_SPLASH;
+    else if(tower === 'laser1') return LASER1_SPLASH;
+}
+
+function getTowerTargeting(tower){
+    if(tower === 'bullet1') return BULLET1_TARGETING;
+    else if(tower === 'bomb1') return BOMB1_TARGETING;
+    else if(tower === 'missile1') return MISSILE1_TARGETING;
+    else if(tower === 'laser1') return LASER1_TARGETING;
 }
