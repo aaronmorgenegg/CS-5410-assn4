@@ -75,7 +75,7 @@ LASER1_SPLASH = false;
 LASER1_TARGETING = 'air';
 LASER1_COST = 15;
 
-LASER2_DISPLAY = 'Laser Tower lvl 3';
+LASER2_DISPLAY = 'Laser Tower lvl 2';
 LASER2_RANGE = 9;
 LASER2_DAMAGE = 6;
 LASER2_SPEED = 5;
@@ -83,8 +83,8 @@ LASER2_SPLASH = false;
 LASER2_TARGETING = 'air';
 LASER2_COST = 30;
 
-LASER3_DISPLAY = 'Laser Tower lvl 1';
-LASER3_RANGE = 8;
+LASER3_DISPLAY = 'Laser Tower lvl 3';
+LASER3_RANGE = 10;
 LASER3_DAMAGE = 9;
 LASER3_SPEED = 8;
 LASER3_SPLASH = false;
@@ -114,6 +114,32 @@ MISSILE3_SPEED = 1;
 MISSILE3_SPLASH = true;
 MISSILE3_TARGETING = 'air';
 MISSILE3_COST = 100;
+
+// Creep Stats
+
+CREEP_G1_DISPLAY = 'Ground Creep 1'; // Display name
+CREEP_G1_HEALTH = 30; // HP
+CREEP_G1_SPEED = 5; // Movement speed
+CREEP_G1_TYPE = 'ground'; // Air or Ground
+CREEP_G1_MONEY = 2; // Money dropped on death
+CREEP_G1_DAMAGE = 1; // Number of Lives taken
+CREEP_G1_SIZE = CELL_WIDTH/3; // Size of texture to render
+
+CREEP_G2_DISPLAY = 'Ground Creep 2'; // Display name
+CREEP_G2_HEALTH = 200; // HP
+CREEP_G2_SPEED = 2; // Movement speed
+CREEP_G2_TYPE = 'ground'; // Air or Ground
+CREEP_G2_MONEY = 8; // Money dropped on death
+CREEP_G2_DAMAGE = 5; // Number of Lives taken
+CREEP_G2_SIZE = CELL_WIDTH*2/3; // Size of texture to render
+
+CREEP_F1_DISPLAY = 'Flying Creep 1'; // Display name
+CREEP_F1_HEALTH = 20; // HP
+CREEP_F1_SPEED = 3; // Movement speed
+CREEP_F1_TYPE = 'air'; // Air or Ground
+CREEP_F1_MONEY = 2; // Money dropped on death
+CREEP_F1_DAMAGE = 1; // Number of Lives taken
+CREEP_F1_SIZE = CELL_WIDTH/2; // Size of texture to render
 
 // Rendering options
 

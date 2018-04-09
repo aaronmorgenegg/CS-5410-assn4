@@ -118,7 +118,7 @@ function upgradeInputToken(){
 }
 
 function start_levelInputToken(){
-    console.log("Start Level token received!");
+    startLevel();
 }
 
 function toggle_gridInputToken(){

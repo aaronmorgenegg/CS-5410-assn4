@@ -22,6 +22,7 @@ function initialize(){
     missile1 = document.getElementById("img-missile1");
     missile2 = document.getElementById("img-missile1");
     missile3 = document.getElementById("img-missile1");
+    creep_f1 = document.getElementById("img-creep_f1");
     money = document.getElementById("img-money");
     lives = document.getElementById("img-lives");
     selection = document.getElementById("img-selection");
@@ -51,6 +52,7 @@ function initialize(){
             'missile1': missile1,
             'missile2': missile2,
             'missile3': missile3,
+            'creep_f1': creep_f1,
             'radius': radius,
             'money': money,
             'lives': lives,
@@ -81,6 +83,7 @@ function initialize(){
             }
         },
         'map': getBaseMap(),
+        'creeps': [],
         'high_scores': loadHighScores(),
         'controls': loadControls(),
         'canvas': canvas,
@@ -111,6 +114,7 @@ function render(){
     renderBackground();
     renderMenu();
     renderMap();
+    renderCreeps();
 }
 
 function gameLoop(){

@@ -50,6 +50,18 @@ function getCell(){
     return 'empty';
 }
 
+function getLeftEntrance(){
+    x = 0;
+    y = Math.floor(GRID_HEIGHT/2);
+    return {'x':x, 'y':y};
+}
+
+function getTopEntrance(){
+    x = Math.floor(GRID_WIDTH/2);
+    y = 0;
+    return {'x':x, 'y':y};
+}
+
 function getAdjacentCells(indices){
     // Returns a list of the adjacent cell indices, including the given cell
     x = indices.x;

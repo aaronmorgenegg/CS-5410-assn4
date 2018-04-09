@@ -322,7 +322,7 @@ function game_menuButton(){
 }
 
 function game_start_levelButton(){
-    console.log('Start Level button pressed!');
+    startLevel();
 }
 
 function game_sellButton(){
