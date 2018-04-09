@@ -124,6 +124,12 @@ function renderCell(indices){
     cell = game_data.map[indices.x][indices.y];
     coords = getMapCoords(indices);
 
+
+    if(indices.x === game_data.state.selection['coords']['x'] &&
+       indices.y === game_data.state.selection['coords']['y']){
+        renderCellImage(coords, 'selection');
+    }
+    
     if(cell !== 'empty') renderCellImage(coords, cell);
 
     if(game_data.options['show_radius'] && isTower(cell)) {

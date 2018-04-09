@@ -16,6 +16,7 @@ function initialize(){
     missile1 = document.getElementById("img-missile1");
     money = document.getElementById("img-money");
     lives = document.getElementById("img-lives");
+    selection = document.getElementById("img-selection");
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -36,7 +37,8 @@ function initialize(){
             'missile1': missile1,
             'radius': radius,
             'money': money,
-            'lives': lives
+            'lives': lives,
+            'selection': selection
         },
         'player':{
             'input': [],
@@ -57,7 +59,10 @@ function initialize(){
         },
         'state':{
             'input': 'base',
-            'selection': 'none'
+            'selection': {
+                'object': 'none',
+                'coords': 'none'
+            }
         },
         'map': getBaseMap(),
         'high_scores': loadHighScores(),

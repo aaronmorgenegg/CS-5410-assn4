@@ -75,3 +75,13 @@ function getTowerTargeting(tower){
     else if(tower === 'missile1') return MISSILE1_TARGETING;
     else if(tower === 'laser1') return LASER1_TARGETING;
 }
+
+function sellTower(){
+    if(game_data.state.selection['object'] === 'none' || game_data.state.selection['coords'] === 'none') return;
+    x = game_data.state.selection['coords']['x'];
+    y = game_data.state.selection['coords']['y'];
+    game_data.map[x][y] = 'empty';
+    game_data.player['money'] += getTowerCost(game_data.state.selection['object']) * SELL_MULT;
+    game_data.state.selection['coords'] = 'none';
+    game_data.state.selection['object'] = 'none';
+}

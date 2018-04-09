@@ -83,9 +83,11 @@ function baseMouseInput(indices){
     x = indices.x;
     y = indices.y;
     if(isTower(map[x][y])){
-        game_data.state['selection'] = map[x][y];
+        game_data.state['selection']['object'] = map[x][y];
+        game_data.state['selection']['coords'] = indices;
     } else {
-        game_data.state['selection'] = 'none';
+        game_data.state['selection']['object'] = 'none';
+        game_data.state['selection']['coords'] = 'none';
     }
 }
 
@@ -108,7 +110,7 @@ function buildMissileTower1MouseInput(indices){
 // ----- KEYBOARD INPUT TOKENS -----
 
 function sellInputToken(){
-    console.log("Sell token received!");
+    sellTower();
 }
 
 function upgradeInputToken(){

@@ -15,6 +15,7 @@ STARTING_LIVES = 100;
 STARTING_MONEY = 100;
 LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
 UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
+SELL_MULT = .5; // Percentage of the buy cost regained from selling a tower
 
 // Tower Stats
 
