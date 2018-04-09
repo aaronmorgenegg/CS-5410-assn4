@@ -16,6 +16,11 @@ STARTING_MONEY = 100;
 LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
 UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 
+BULLET1_RANGE = 5;
+BOMB1_RANGE = 4;
+LASER1_RANGE = 6;
+MISSILE1_RANGE = 7;
+
 // Rendering options
 
 MENU_FONT = '30px Arial';
@@ -25,6 +30,7 @@ MENU_BUTTON_STROKE = 'rgba(25, 25, 25, 1)';
 MENU_BUTTON_WIDTH = 360;
 MENU_BUTTON_HEIGHT = 90;
 BLACK_COLOR = 'rgba(0,0,0,1)';
+SEMI_TRANSPARENT_COLOR = 'rgba(255,255,255,.2';
 TRANSPARENT_COLOR = 'rgba(0,0,0,0)';
 
 // Constants - No Touching!

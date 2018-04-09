@@ -126,6 +126,9 @@ function renderCell(indices){
 
     if(cell !== 'empty') renderCellImage(coords, cell);
 
+    if(game_data.options['show_radius'] && isTower(cell)) {
+        renderRadius(coords, cell);
+    }
     if(game_data.options['show_grid']){
         renderGrid(coords);
     }
@@ -141,5 +144,16 @@ function renderGrid(coords){
             fill: TRANSPARENT_COLOR,
             stroke: BLACK_COLOR
         }
+    );
+}
+
+function renderRadius(coords, tower){
+    tower_range = getTowerRange(tower);
+    context.drawImage(
+        img = game_data.textures['radius'],
+        x = coords.x - (tower_range * CELL_WIDTH)/2 + CELL_WIDTH/2,
+        y = coords.y - (tower_range * CELL_HEIGHT)/2 + CELL_HEIGHT/2,
+        width = tower_range * CELL_WIDTH,
+        height = tower_range * CELL_HEIGHT
     );
 }

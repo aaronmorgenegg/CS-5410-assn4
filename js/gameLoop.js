@@ -9,6 +9,7 @@ function initialize(){
     wall = document.getElementById("img-wall");
     entrance = document.getElementById("img-entrance");
     exit = document.getElementById("img-exit");
+    radius = document.getElementById("img-radius");
     bullet1 = document.getElementById("img-bullet1");
     bomb1 = document.getElementById("img-bomb1");
     laser1 = document.getElementById("img-laser1");
@@ -30,7 +31,8 @@ function initialize(){
             'bullet1': bullet1,
             'bomb1': bomb1,
             'laser1': laser1,
-            'missile1': missile1
+            'missile1': missile1,
+            'radius': radius
         },
         'player':{
             'input': [],
@@ -80,6 +82,7 @@ function update(){
 }
 
 function render(){
+    clearCanvas();
     renderBackground();
     renderMenu();
     renderMap();

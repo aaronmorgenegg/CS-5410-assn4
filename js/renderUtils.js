@@ -47,6 +47,10 @@ function drawText(context, spec){
     context.fillText(msg, x, y);
 }
 
+function clearCanvas(){
+    game_data.context.clearRect(0, 0, game_data.canvas.width, game_data.canvas.height);
+}
+
 function renderBackground() {
     canvas = game_data['canvas'];
     context = game_data['context'];
