@@ -14,6 +14,8 @@ function initialize(){
     bomb1 = document.getElementById("img-bomb1");
     laser1 = document.getElementById("img-laser1");
     missile1 = document.getElementById("img-missile1");
+    money = document.getElementById("img-money");
+    lives = document.getElementById("img-lives");
     game_data = {
         'time':{
             'previous':performance.now(),
@@ -32,7 +34,9 @@ function initialize(){
             'bomb1': bomb1,
             'laser1': laser1,
             'missile1': missile1,
-            'radius': radius
+            'radius': radius,
+            'money': money,
+            'lives': lives
         },
         'player':{
             'input': [],

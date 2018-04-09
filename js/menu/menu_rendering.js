@@ -71,4 +71,36 @@ function controlsMenuRender(){
 
 function gameMenuRender(){
     renderButtons(game_data.menu['buttons']);
+    renderHUD();
+}
+
+function renderHUD(){
+    x = 10;
+    y = MENU_HEIGHT/2;
+    drawRectangle(game_data.context,
+        {
+            x: x,
+            y: y,
+            width: MENU_WIDTH-20,
+            height: MENU_HEIGHT/2 - 10,
+            fill: MENU_BUTTON_FILL,
+            stroke: MENU_BUTTON_STROKE
+        }
+    );
+
+    renderHUDElement('money', 10, MENU_HEIGHT/2);
+    renderHUDElement('lives', MENU_WIDTH/2, MENU_HEIGHT/2);
+}
+
+function renderHUDElement(element, x, y){
+    game_data.context.drawImage(
+        game_data.textures[element],
+        x + 10,
+        y + 10,
+        25,
+        25
+    );
+    drawText(game_data.context,
+        {x:x + 100, y:y + 30, color:MENU_FONT_COLOR, font:MENU_FONT, msg:game_data.player[element]}
+        );
 }
