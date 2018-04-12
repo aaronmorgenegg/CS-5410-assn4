@@ -12,6 +12,7 @@ function getCreep(direction, creep){
     return {'name': creep,
             'coords': coords,
             'direction' : direction,
+            'health': getCreepMaxHealth(creep),
             'delete': false
     };
 }
@@ -88,6 +89,7 @@ function getCreepSize(creep){
 
 function updateCreep(creep){
     updateCreepMovement(creep);
+    updateCreepKill(creep);
     updateCreepLeak(creep);
 }
 
@@ -97,10 +99,6 @@ function updateCreepMovement(creep){
     creep_movement = game_data.time['elapsed'] * getCreepSpeed(creep['name']);
     current_index = getIndexOf(path, creep_indices);
 
-    if(current_index === -1){
-        creep['delete'] = true;
-        return;
-    }
     if(current_index+1 >= path.length){
         if(creep['direction'] === 'lr'){
             creep['coords']['x'] += creep_movement;
@@ -119,6 +117,13 @@ function updateCreepMovement(creep){
         creep['coords']['y'] += creep_movement;
     } else if(goal['y'] < creep_indices['y']){
         creep['coords']['y'] -= creep_movement;
+    }
+}
+
+function updateCreepKill(creep){
+    if(creep['health'] <= 0) {
+        game_data.player.money += getCreepMoney(creep['name']);
+        creep['delete'] = true;
     }
 }
 
@@ -148,6 +153,40 @@ function renderCreep(creep){
         y = y - size/2,
         width = size,
         height = size
+    );
+
+    renderCreepHealthBar(creep);
+}
+
+function renderCreepHealthBar(creep){
+    size = getCreepSize(creep['name']);
+    x = creep['coords']['x'];
+    y = creep['coords']['y'];
+    health_ratio = creep['health'] / getCreepMaxHealth(creep['name']);
+    if(health_ratio < .25) color = HEALTH_BAR_COLOR_LOW;
+    else if(health_ratio < .5) color = HEALTH_BAR_COLOR_MED;
+    else color = HEALTH_BAR_COLOR_HIGH;
+
+    drawRectangle(game_data.context,
+        {
+            x: x - size/2,
+            y: y - size/2 - 10,
+            width: size * health_ratio,
+            height: size/4,
+            fill: color,
+            stroke: color
+        }
+    );
+
+    drawRectangle(game_data.context,
+        {
+            x: x - size/2,
+            y: y - size/2 - 10,
+            width: size,
+            height: size/4,
+            fill: TRANSPARENT_COLOR,
+            stroke: BLACK_COLOR
+        }
     );
 }
 
