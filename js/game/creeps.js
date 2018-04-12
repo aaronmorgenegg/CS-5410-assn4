@@ -1,9 +1,9 @@
 function getCreep(direction, creep){
-    if(direction = 'lr') {
+    if(direction === 'lr') {
         coords = getMapCoords(getLeftEntrance());
         coords.x += CELL_WIDTH/2;
-    } else if(direction = 'ud'){
-        coords = getMapCoords(getRightEntrance());
+    } else if(direction === 'ud'){
+        coords = getMapCoords(getTopEntrance());
         coords.y += CELL_HEIGHT/2;
     }
     indices = getMapIndices(coords);

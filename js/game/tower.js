@@ -12,6 +12,7 @@ function getTower(indices, tower){
     } else if(cell === 'empty'){
         map[x][y] = tower;
         game_data.player['money'] -= getTowerCost(tower);
+        game_data.towers.push(indices);
     } else {
         console.log('Cell is invalid.');
         return;
@@ -183,11 +184,30 @@ function getNextUpgrade(tower){
     }
 }
 
+function getTowerCooldowns(){
+    return {
+        'bullet1': getTowerSpeed('bullet1') * 1000,
+        'bullet2': getTowerSpeed('bullet2') * 1000,
+        'bullet3': getTowerSpeed('bullet3') * 1000,
+        'bomb1': getTowerSpeed('bomb1') * 1000,
+        'bomb2': getTowerSpeed('bomb2') * 1000,
+        'bomb3': getTowerSpeed('bomb3') * 1000,
+        'laser1': getTowerSpeed('laser1') * 1000,
+        'laser2': getTowerSpeed('laser2') * 1000,
+        'laser3': getTowerSpeed('laser3') * 1000,
+        'missile1': getTowerSpeed('missile1') * 1000,
+        'missile2': getTowerSpeed('missile2') * 1000,
+        'missile3': getTowerSpeed('missile3') * 1000
+    }
+
+}
+
 function sellTower(){
     if(game_data.state.selection['object'] === 'none' || game_data.state.selection['coords'] === 'none') return;
     x = game_data.state.selection['coords']['x'];
     y = game_data.state.selection['coords']['y'];
     game_data.map[x][y] = 'empty';
+    game_data.towers.splice(getIndexOf(game_data.towers, game_data.state.selection['coords']), 1);
     game_data.player['money'] += getTowerCost(game_data.state.selection['object']) * SELL_MULT;
     game_data.state.selection['coords'] = 'none';
     game_data.state.selection['object'] = 'none';
@@ -206,4 +226,59 @@ function upgradeTower(){
     game_data.map[x][y] = new_tower;
     game_data.state.selection['coords'] = coords;
     game_data.state.selection['object'] = new_tower;
+}
+
+function updateTowers(){
+    for(t = 0; t < game_data.towers.length; t++){
+        updateTower(game_data.towers[t]);
+    }
+    updateTowerCooldowns();
+}
+
+function updateTowerCooldowns(){
+    for(tower in game_data['tower_cooldowns']){
+        if(game_data['tower_cooldowns'].hasOwnProperty(tower)){
+            if(game_data.tower_cooldowns[tower] < 0){
+                game_data.tower_cooldowns[tower] = getTowerSpeed(tower) * 1000;
+            } else{
+                game_data.tower_cooldowns[tower] -= game_data.time['elapsed'];
+            }
+        }
+    }
+}
+
+function updateTower(tower){
+    updateTowerAttack(tower);
+}
+
+function updateTowerAttack(tower){
+    tower_name = map[tower.x][tower.y];
+    if(game_data.tower_cooldowns[tower_name] < 0){
+        target = getCreepToAttack(tower);
+        if(target !== undefined) attackCreep(tower, target);
+    }
+}
+
+function getCreepToAttack(tower){
+    tower_name = map[tower.x][tower.y];
+    tower_type = getTowerTargeting(tower_name);
+    tower_range = getTowerRange(tower_name);
+    for(c = 0; c < game_data.creeps.length; c++){
+        if(tower_type === getCreepType(game_data.creeps[c]['name'])) {
+            creep_indices = getMapIndices(game_data.creeps[c]['coords']);
+            if (creepInRange(tower, creep_indices, tower_range)) return game_data.creeps[c];
+        }
+    }
+    return undefined;
+}
+
+function creepInRange(tower_indices, creep_indices, tower_range){
+    a = tower_indices.x - creep_indices.x;
+    b = tower_indices.y - creep_indices.y;
+    return (Math.sqrt(a*a + b*b) < tower_range);
+}
+
+function attackCreep(tower, target){
+    tower_name = map[tower.x][tower.y];
+    target['health'] -= getTowerDamage(tower_name);
 }

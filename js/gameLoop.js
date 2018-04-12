@@ -85,6 +85,8 @@ function initialize(){
         },
         'map': map,
         'creeps': [],
+        'towers': [],
+        'tower_cooldowns': getTowerCooldowns(),
         'path': {
             'alr': getShortestAirPath('lr', map),
             'aud': getShortestAirPath('ud', map),
@@ -114,6 +116,7 @@ function processInput(){
 
 function update(){
     updateCreeps();
+    updateTowers();
 }
 
 function render(){

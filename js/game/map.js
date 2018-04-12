@@ -153,7 +153,7 @@ function getShortestAirPath(direction, map){
 
 function getShortestGroundPath(direction, map){
     // TODO:
-    return [];
+    return getShortestAirPath(direction, map);
 }
 
 
@@ -200,11 +200,20 @@ function renderGrid(coords){
 
 function renderRadius(coords, tower){
     tower_range = getTowerRange(tower);
-    context.drawImage(
-        img = game_data.textures['radius'],
-        x = coords.x - (tower_range * CELL_WIDTH)/2 + CELL_WIDTH/2,
-        y = coords.y - (tower_range * CELL_HEIGHT)/2 + CELL_HEIGHT/2,
-        width = tower_range * CELL_WIDTH,
-        height = tower_range * CELL_HEIGHT
-    );
+    // context.drawImage(
+    //     img = game_data.textures['radius'],
+    //     x = coords.x - (tower_range * CELL_WIDTH)/2 + CELL_WIDTH/2,
+    //     y = coords.y - (tower_range * CELL_HEIGHT)/2 + CELL_HEIGHT/2,
+    //     width = tower_range * CELL_WIDTH,
+    //     height = tower_range * CELL_HEIGHT
+    // );
+
+    drawCircle(game_data.context,
+        {
+            'x': coords.x + CELL_WIDTH/2,
+            'y': coords.y + CELL_HEIGHT/2,
+            'radius': tower_range * CELL_WIDTH,
+            'stroke': BLACK_COLOR,
+            'fill': TRANSPARENT_COLOR
+        });
 }
