@@ -7,11 +7,12 @@ function getCreep(direction, creep){
         coords.y += CELL_HEIGHT/2;
     }
     indices = getMapIndices(coords);
-    path = getShortestPath(indices, direction);
+    path = getShortestPath(direction, getCreepType(creep));
 
     return {'name': creep,
             'coords': coords,
-            'path': path
+            'direction' : direction,
+            'delete': false
     };
 }
 
@@ -36,9 +37,9 @@ function getCreepDisplay(creep){
 }
 
 function getCreepSpeed(creep){
-    if(creep === 'creep_g1') return CREEP_G1_SPEED;
-    else if(creep === 'creep_g2') return CREEP_G2_SPEED;
-    else if(creep === 'creep_f1') return CREEP_F1_SPEED;
+    if(creep === 'creep_g1') return CREEP_G1_SPEED*CREEP_SPEED_MULT;
+    else if(creep === 'creep_g2') return CREEP_G2_SPEED*CREEP_SPEED_MULT;
+    else if(creep === 'creep_f1') return CREEP_F1_SPEED*CREEP_SPEED_MULT;
     else {
         console.log('Creep does not exist');
         return -1;
@@ -85,6 +86,57 @@ function getCreepSize(creep){
     }
 }
 
+function updateCreep(creep){
+    updateCreepMovement(creep);
+    updateCreepLeak(creep);
+}
+
+function updateCreepMovement(creep){
+    path = getShortestPath(creep['direction'], getCreepType(creep['name']));
+    creep_indices = getMapIndices(creep['coords']);
+    creep_movement = game_data.time['elapsed'] * getCreepSpeed(creep['name']);
+    current_index = getIndexOf(path, creep_indices);
+
+    if(current_index === -1){
+        creep['delete'] = true;
+        return;
+    }
+    if(current_index+1 >= path.length){
+        if(creep['direction'] === 'lr'){
+            creep['coords']['x'] += creep_movement;
+        } else if(creep['direction'] === 'ud'){
+            creep['coords']['y'] += creep_movement;
+        }
+        return;
+    }
+
+    goal = path[current_index+1];
+    if(goal['x'] > creep_indices['x']){
+        creep['coords']['x'] += creep_movement;
+    } else if(goal['x'] < creep_indices['x']){
+        creep['coords']['x'] -= creep_movement;
+    } else if(goal['y'] > creep_indices['y']){
+        creep['coords']['y'] += creep_movement;
+    } else if(goal['y'] < creep_indices['y']){
+        creep['coords']['y'] -= creep_movement;
+    }
+}
+
+function updateCreepLeak(creep){
+    if(creep['coords']['x'] >= GAME_WIDTH - CREEP_LEAK_THRESHOLD ||
+       creep['coords']['y'] >= GAME_HEIGHT - CREEP_LEAK_THRESHOLD){
+        game_data.player['lives'] -= getCreepDamage(creep['name']);
+        creep['delete'] = true;
+    }
+}
+
+function updateCreeps(){
+    for(c = game_data.creeps.length-1; c >= 0; c--){
+        if(game_data.creeps[c]['delete'] === true) game_data.creeps.splice(c, 1);
+        else updateCreep(game_data.creeps[c]);
+    }
+}
+
 function renderCreep(creep){
     texture = game_data.textures[creep['name']];
     size = getCreepSize(creep['name']);
@@ -105,10 +157,29 @@ function renderCreeps(){
     }
 }
 
-function getShortestPath(){ // TODO:
-    return getShortestAirPath();
+function getShortestPath(direction, type){
+    if(direction === 'lr'){
+        if(type === 'air'){
+            return game_data.path['alr'];
+        }
+        else if(type === 'ground'){
+            return game_data.path['glr'];
+        }
+        else {
+            console.log('Error during getShortestPath : invalid type');
+        }
+    } else if(direction === 'ud'){
+        if(type === 'air'){
+            return game_data.path['aud'];
+        }
+        else if(type === 'ground'){
+            return game_data.path['gud'];
+        }
+        else {
+            console.log('Error during getShortestPath : invalid type');
+        }
+    } else {
+        console.log('Error during getShortestPath : invalid direction');
+    }
 }
 
-function getShortestAirPath(){ // TODO:
-    return [];
-}

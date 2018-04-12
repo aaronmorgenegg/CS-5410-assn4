@@ -124,6 +124,39 @@ function getMapIndices(coords){
     return indices;
 }
 
+function getShortestAirPath(direction, map){
+    if(direction === 'lr') indices = getLeftEntrance();
+    else if(direction === 'ud') indices = getTopEntrance();
+    else console.log('Error: invalid direction during getShortestAirPath');
+    x = indices.x;
+    y = indices.y;
+    shortest_path = [];
+    if(direction === 'lr'){
+        for(i = 0; i < GRID_WIDTH; i++){
+            shortest_path.push({'x': x+i, 'y':y});
+            if(map[i+x][y] === 'exit'){
+                return shortest_path;
+            }
+        }
+    } else if(direction === 'ud'){
+        for(i = 0; i < GRID_HEIGHT; i++){
+            shortest_path.push({'x': x, 'y':y+i});
+            if(map[x][i+y] === 'exit'){
+                return shortest_path;
+            }
+        }
+    } else {
+        console.log('Error: invalid direction during getShortestAirPath');
+    }
+    return shortest_path;
+}
+
+function getShortestGroundPath(direction, map){
+    // TODO:
+    return [];
+}
+
+
 function renderMap(){
     for(i = 0; i < GRID_WIDTH; i++){
         for(j = 0; j < GRID_HEIGHT; j++){

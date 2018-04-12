@@ -4,6 +4,7 @@ function initialize(){
     // Initializes the textures, options, and calls gameLoop
     canvas = document.getElementById('canvas_main');
     context = canvas.getContext('2d');
+    map = getBaseMap();
     background_game = document.getElementById("img-background_game");
     background_menu = document.getElementById("img-background_menu");
     wall = document.getElementById("img-wall");
@@ -82,8 +83,14 @@ function initialize(){
                 'coords': 'none'
             }
         },
-        'map': getBaseMap(),
+        'map': map,
         'creeps': [],
+        'path': {
+            'alr': getShortestAirPath('lr', map),
+            'aud': getShortestAirPath('ud', map),
+            'glr': getShortestGroundPath('lr', map),
+            'gud': getShortestGroundPath('ud', map)
+        },
         'high_scores': loadHighScores(),
         'controls': loadControls(),
         'canvas': canvas,
@@ -106,7 +113,7 @@ function processInput(){
 }
 
 function update(){
-
+    updateCreeps();
 }
 
 function render(){

@@ -12,3 +12,11 @@ function updateTime(){
     if(game_data['time']['countdown'] < 0) game_data['time']['countdown'] = 0;
     else game_data['time']['countdown'] -= game_data['time']['elapsed'];
 }
+
+function getIndexOf(list, object){
+    for(i = 0; i < list.length; i++){
+        if(list[i]['x'] === object['x'] && list[i]['y'] === object['y']) return i;
+    }
+    console.log('Error: getIndexOf, object not found in list');
+    return -1;
+}

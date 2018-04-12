@@ -16,6 +16,8 @@ STARTING_MONEY = 100;
 LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
 UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 SELL_MULT = .5; // Percentage of the buy cost regained from selling a tower
+CREEP_SPEED_MULT = 0.05; // Modifies creep movement speed across the board
+CREEP_LEAK_THRESHOLD = CELL_WIDTH/2; // tolerance for when a creep reaches exit and despawns
 
 // Tower Stats
 
