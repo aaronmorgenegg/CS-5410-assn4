@@ -13,6 +13,7 @@ function getTower(indices, tower){
         map[x][y] = tower;
         game_data.player['money'] -= getTowerCost(tower);
         game_data.towers.push(indices);
+        updateShortestPaths();
     } else {
         console.log('Cell is invalid.');
         return;

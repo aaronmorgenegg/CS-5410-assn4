@@ -198,17 +198,15 @@ function getShortestGroundPath(direction, map){
     }
     visited = [];
     directions = ['u', 'r', 'd', 'l'];
-    counter = 100;
-    while (solutions.length > 0 && counter >= 0) {
-        counter--;
-        path = solutions.pop();
+    while (solutions.length > 0) {
+        path = solutions.shift();
         for (s = 0; s < directions.length; s++) {
             // Add new paths spreading in each viable direction
             new_path = path.slice();
             connected_coords = getConnectedCell(new_path[new_path.length - 1], directions[s]);
             if(checkConnectedCoords(connected_coords)) {
                 connected_cell = map[connected_coords.x][connected_coords.y];
-                if (connected_cell === 'empty' || connected_cell === 'exit') {
+                if (connected_cell === 'empty' || connected_cell === 'exit' || connected_cell === 'entrance') {
                     if (getIndexOf(visited, connected_coords) === -1) {
                         new_path.push(connected_coords);
                         if (isValidExit(connected_coords, connected_cell, direction)) {
@@ -225,8 +223,8 @@ function getShortestGroundPath(direction, map){
 }
 
 function updateShortestPaths(){
-    game_data.paths['glr'] = getShortestGroundPath('lr', game_data.map);
-    game_data.paths['gud'] = getShortestGroundPath('ud', game_data.map);
+    game_data.path['glr'] = getShortestGroundPath('lr', game_data.map);
+    game_data.path['gud'] = getShortestGroundPath('ud', game_data.map);
 }
 
 function renderMap(){
