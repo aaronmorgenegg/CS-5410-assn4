@@ -1,10 +1,8 @@
 function getCreep(direction, creep){
     if(direction === 'lr') {
         coords = getMapCoords(getLeftEntrance());
-        coords.x += CELL_WIDTH/2;
     } else if(direction === 'ud'){
         coords = getMapCoords(getTopEntrance());
-        coords.y += CELL_HEIGHT/2;
     }
     indices = getMapIndices(coords);
     path = getShortestPath(direction, getCreepType(creep));
@@ -145,8 +143,8 @@ function updateCreeps(){
 function renderCreep(creep){
     texture = game_data.textures[creep['name']];
     size = getCreepSize(creep['name']);
-    x = creep['coords']['x'];
-    y = creep['coords']['y'];
+    x = creep['coords']['x'] + CELL_WIDTH/2;
+    y = creep['coords']['y'] + CELL_HEIGHT/2;
     game_data.context.drawImage(
         img = texture,
         x = x - size/2,
@@ -160,8 +158,8 @@ function renderCreep(creep){
 
 function renderCreepHealthBar(creep){
     size = getCreepSize(creep['name']);
-    x = creep['coords']['x'];
-    y = creep['coords']['y'];
+    x = creep['coords']['x'] + CELL_WIDTH/2;
+    y = creep['coords']['y'] + CELL_HEIGHT/2;
     health_ratio = creep['health'] / getCreepMaxHealth(creep['name']);
     if(health_ratio < .25) color = HEALTH_BAR_COLOR_LOW;
     else if(health_ratio < .5) color = HEALTH_BAR_COLOR_MED;

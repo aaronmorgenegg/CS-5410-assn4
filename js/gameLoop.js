@@ -24,6 +24,8 @@ function initialize(){
     missile2 = document.getElementById("img-missile1");
     missile3 = document.getElementById("img-missile1");
     creep_f1 = document.getElementById("img-creep_f1");
+    creep_g1 = document.getElementById("img-creep_g1");
+    creep_g2 = document.getElementById("img-creep_g2");
     money = document.getElementById("img-money");
     lives = document.getElementById("img-lives");
     selection = document.getElementById("img-selection");
@@ -54,6 +56,8 @@ function initialize(){
             'missile2': missile2,
             'missile3': missile3,
             'creep_f1': creep_f1,
+            'creep_g1': creep_g1,
+            'creep_g2': creep_g2,
             'radius': radius,
             'money': money,
             'lives': lives,

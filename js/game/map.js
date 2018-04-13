@@ -8,9 +8,9 @@ function getBaseMap(){
 
 function getEmptyMap(){
     map = [];
-    for(i = 0; i < GAME_WIDTH; i++){
+    for(i = 0; i < GRID_WIDTH; i++){
         col = [];
-        for(j = 0; j < GAME_HEIGHT; j++){
+        for(j = 0; j < GRID_HEIGHT; j++){
             col.push(getCell());
         }
         map.push(col);
@@ -151,11 +151,83 @@ function getShortestAirPath(direction, map){
     return shortest_path;
 }
 
-function getShortestGroundPath(direction, map){
-    // TODO:
-    return getShortestAirPath(direction, map);
+function getConnectedCell(coords, direction){
+    if(direction === 'u'){
+        return {'x':coords.x, 'y':coords.y-1};
+    } else if(direction === 'r'){
+        return {'x':coords.x+1, 'y':coords.y};
+    } else if(direction === 'd'){
+        return {'x':coords.x, 'y':coords.y+1};
+    } else if(direction === 'l'){
+        return {'x':coords.x-1, 'y':coords.y};
+    } else {
+        console.log('Error: Invalid direction during getConnectedCell');
+    }
 }
 
+function checkConnectedCoords(connected_coords){
+    if(connected_coords.x >= 0 && connected_coords.y >= 0 &&
+       connected_coords.x < GRID_WIDTH && connected_coords.y < GRID_HEIGHT){
+        return true;
+    }
+    return false;
+}
+
+function isValidExit(coords, cell, direction){
+    if(cell !== 'exit'){
+        return false;
+    }
+    if(direction === 'lr'){
+        if(coords.x < GRID_WIDTH-2){
+            return false;
+        }
+    }
+    if(direction === 'ud'){
+        if(coords.y < GRID_HEIGHT-2){
+            return false;
+        }
+    }
+    return true;
+}
+
+function getShortestGroundPath(direction, map){
+    if(direction === 'lr') {
+        solutions = [[getLeftEntrance()]];
+    } else {
+        solutions = [[getTopEntrance()]];
+    }
+    visited = [];
+    directions = ['u', 'r', 'd', 'l'];
+    counter = 100;
+    while (solutions.length > 0 && counter >= 0) {
+        counter--;
+        path = solutions.pop();
+        for (s = 0; s < directions.length; s++) {
+            // Add new paths spreading in each viable direction
+            new_path = path.slice();
+            connected_coords = getConnectedCell(new_path[new_path.length - 1], directions[s]);
+            if(checkConnectedCoords(connected_coords)) {
+                connected_cell = map[connected_coords.x][connected_coords.y];
+                if (connected_cell === 'empty' || connected_cell === 'exit') {
+                    if (getIndexOf(visited, connected_coords) === -1) {
+                        new_path.push(connected_coords);
+                        if (isValidExit(connected_coords, connected_cell, direction)) {
+                            return new_path;
+                        }
+                        solutions.push(new_path);
+                        visited.push(connected_coords);
+                    }
+                }
+            }
+        }
+    }
+    console.log('Error: no shortest ground path found');
+}
+
+function updateShortestPaths(){
+    game_data.paths['glr'] = getShortestGroundPath('lr', game_data.map);
+    game_data.paths['gud'] = getShortestGroundPath('ud', game_data.map);
+}
 
 function renderMap(){
     for(i = 0; i < GRID_WIDTH; i++){
@@ -200,13 +272,6 @@ function renderGrid(coords){
 
 function renderRadius(coords, tower){
     tower_range = getTowerRange(tower);
-    // context.drawImage(
-    //     img = game_data.textures['radius'],
-    //     x = coords.x - (tower_range * CELL_WIDTH)/2 + CELL_WIDTH/2,
-    //     y = coords.y - (tower_range * CELL_HEIGHT)/2 + CELL_HEIGHT/2,
-    //     width = tower_range * CELL_WIDTH,
-    //     height = tower_range * CELL_HEIGHT
-    // );
 
     drawCircle(game_data.context,
         {

@@ -17,6 +17,5 @@ function getIndexOf(list, object){
     for(i = 0; i < list.length; i++){
         if(list[i]['x'] === object['x'] && list[i]['y'] === object['y']) return i;
     }
-    console.log('Error: getIndexOf, object not found in list');
     return -1;
 }
