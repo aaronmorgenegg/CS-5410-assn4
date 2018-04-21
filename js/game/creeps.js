@@ -121,6 +121,7 @@ function updateCreepMovement(creep){
 function updateCreepKill(creep){
     if(creep['health'] <= 0) {
         game_data.player.money += getCreepMoney(creep['name']);
+        game_data.player.score += getCreepMoney(creep['name']);
         creep['delete'] = true;
     }
 }

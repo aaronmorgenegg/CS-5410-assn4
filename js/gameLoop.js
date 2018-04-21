@@ -107,6 +107,7 @@ function initialize(){
         'controls': loadControls(),
         'canvas': canvas,
         'context': context,
+        'game_over': false,
         'particles': []
     };
 
@@ -125,10 +126,13 @@ function processInput(){
 }
 
 function update(){
-    updateCreeps();
-    updateTowers();
-    updateSplashDamage();
-    updateLevel();
+    updateGameOver();
+    if(!game_data.game_over){
+        updateCreeps();
+        updateTowers();
+        updateSplashDamage();
+        updateLevel();
+    }
 }
 
 function render(){
@@ -137,6 +141,7 @@ function render(){
     renderMenu();
     renderMap();
     renderCreeps();
+    renderGameOver();
 }
 
 function gameLoop(){

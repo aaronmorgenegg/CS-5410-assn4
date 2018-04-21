@@ -141,7 +141,7 @@ CREEP_F1_HEALTH = 100; // HP
 CREEP_F1_SPEED = 3; // Movement speed
 CREEP_F1_TYPE = 'air'; // Air or Ground
 CREEP_F1_MONEY = 5; // Money dropped on death
-CREEP_F1_DAMAGE = 1; // Number of Lives taken
+CREEP_F1_DAMAGE = 3; // Number of Lives taken
 CREEP_F1_SIZE = CELL_WIDTH/2; // Size of texture to render
 
 // Level options
@@ -167,6 +167,7 @@ HEALTH_BAR_COLOR_LOW = 'rgba(200,0,0,.75)';
 BLACK_COLOR = 'rgba(0,0,0,1)';
 SEMI_TRANSPARENT_COLOR = 'rgba(255,255,255,.2';
 TRANSPARENT_COLOR = 'rgba(0,0,0,0)';
+GAME_OVER_FONT = '150px Arial';
 
 // Constants - No Touching!
 KEY_TOKENS = ['sell', 'upgrade', 'start_level', 'toggle_grid', 'toggle_radius', 'toggle_path', 'toggle_mute'];
