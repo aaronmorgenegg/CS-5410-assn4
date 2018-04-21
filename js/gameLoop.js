@@ -89,6 +89,7 @@ function initialize(){
             }
         },
         'map': map,
+        'splash_map': getBaseSplashMap(),
         'creeps': [],
         'towers': [],
         'tower_cooldowns': getTowerCooldowns(),
@@ -126,6 +127,7 @@ function processInput(){
 function update(){
     updateCreeps();
     updateTowers();
+    updateSplashDamage();
     updateLevel();
 }
 

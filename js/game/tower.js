@@ -283,8 +283,41 @@ function attackCreep(tower, target){
     tower_name = map[tower.x][tower.y];
     if(getTowerSplash(tower_name)){
         creep_coords = target['coords'];
-        // TODO: splash damage from towers
+        indices = getMapIndices(creep_coords);
+        addSplash(indices, getTowerDamage(tower_name));
     } else {
         target['health'] -= getTowerDamage(tower_name);
     }
+}
+
+function getBaseSplashMap(){
+    splash = [];
+    for(q = 0; q < GRID_WIDTH; q++){
+        col = [];
+        for(w = 0; w < GRID_HEIGHT; w++){
+            col.push(0);
+        }
+        splash.push(col);
+    }
+    return splash;
+}
+
+function addSplash(indices, damage){
+    game_data.splash_map[indices.x][indices.y] += damage;
+    if(indices.x > 0 && indices.y > 0) game_data.splash_map[indices.x-1][indices.y-1] += damage;
+    if(indices.y > 0) game_data.splash_map[indices.x][indices.y-1] += damage;
+    if(indices.x < GRID_WIDTH-1 && indices.y > 0) game_data.splash_map[indices.x+1][indices.y-1] += damage;
+    if(indices.x > 0) game_data.splash_map[indices.x-1][indices.y] += damage;
+    if(indices.x < GRID_WIDTH-1) game_data.splash_map[indices.x+1][indices.y] += damage;
+    if(indices.x > 0 && indices.y < GRID_HEIGHT-1) game_data.splash_map[indices.x-1][indices.y+1] += damage;
+    if(indices.y < GRID_HEIGHT-1) game_data.splash_map[indices.x][indices.y+1] += damage;
+    if(indices.x < GRID_WIDTH-1 && indices.y < GRID_HEIGHT-1) game_data.splash_map[indices.x+1][indices.y+1] += damage;
+}
+
+function updateSplashDamage(){
+    for(c = 0; c < game_data.creeps.length; c++){
+        c_indices = getMapIndices(game_data.creeps[c]['coords']);
+        game_data.creeps[c]['health'] -= game_data.splash_map[c_indices.x][c_indices.y];
+    }
+    game_data.splash_map = getBaseSplashMap();
 }

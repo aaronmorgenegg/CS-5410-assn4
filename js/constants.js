@@ -18,7 +18,7 @@ UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 SELL_MULT = .5; // Percentage of the buy cost regained from selling a tower
 CREEP_SPEED_MULT = 0.05; // Modifies creep movement speed across the board
 CREEP_LEAK_THRESHOLD = CELL_WIDTH/2; // tolerance for when a creep reaches exit and despawns
-CREEP_SPAWN_RATE = 300;
+CREEP_SPAWN_RATE = 200;
 
 // Tower Stats
 
@@ -104,7 +104,7 @@ MISSILE1_COST = 15;
 
 MISSILE2_DISPLAY = 'Missile Tower lvl 2';
 MISSILE2_RANGE = 12;
-MISSILE2_DAMAGE = 10;
+MISSILE2_DAMAGE = 15;
 MISSILE2_SPEED = 1.5;
 MISSILE2_SPLASH = true;
 MISSILE2_TARGETING = 'air';
@@ -112,7 +112,7 @@ MISSILE2_COST = 30;
 
 MISSILE3_DISPLAY = 'Missile Tower lvl 3';
 MISSILE3_RANGE = 15;
-MISSILE3_DAMAGE = 15;
+MISSILE3_DAMAGE = 50;
 MISSILE3_SPEED = 1.5;
 MISSILE3_SPLASH = true;
 MISSILE3_TARGETING = 'air';
