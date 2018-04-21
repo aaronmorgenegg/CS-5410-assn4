@@ -281,5 +281,10 @@ function creepInRange(tower_indices, creep_indices, tower_range){
 
 function attackCreep(tower, target){
     tower_name = map[tower.x][tower.y];
-    target['health'] -= getTowerDamage(tower_name);
+    if(getTowerSplash(tower_name)){
+        creep_coords = target['coords'];
+        // TODO: splash damage from towers
+    } else {
+        target['health'] -= getTowerDamage(tower_name);
+    }
 }

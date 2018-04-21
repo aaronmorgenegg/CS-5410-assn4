@@ -35,7 +35,8 @@ function initialize(){
             'current':0,
             'elapsed':0,
             'running':0,
-            'countdown': 0
+            'countdown': 0,
+            'creep_spawn': CREEP_SPAWN_RATE
         },
         'textures':{
             'background_game': background_game,
@@ -97,6 +98,10 @@ function initialize(){
             'glr': getShortestGroundPath('lr', map),
             'gud': getShortestGroundPath('ud', map)
         },
+        'level':{
+            'number': 0,
+            'creeps_remaining': 0
+        },
         'high_scores': loadHighScores(),
         'controls': loadControls(),
         'canvas': canvas,
@@ -121,6 +126,7 @@ function processInput(){
 function update(){
     updateCreeps();
     updateTowers();
+    updateLevel();
 }
 
 function render(){
