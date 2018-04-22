@@ -12,7 +12,7 @@ GRID_HEIGHT = 18;
 CELL_WIDTH = (GAME_WIDTH - MENU_WIDTH)/GRID_WIDTH;
 CELL_HEIGHT = GAME_HEIGHT/GRID_HEIGHT;
 STARTING_LIVES = 100;
-STARTING_MONEY = 100;
+STARTING_MONEY = 200;
 LR_GATE_SIZE = 8; // Size of the gates on the left and right sides
 UD_GATE_SIZE = 8; // Size of the gates on the top and bottom sides
 SELL_MULT = .5; // Percentage of the buy cost regained from selling a tower
@@ -126,7 +126,7 @@ CREEP_G1_SPEED = 5; // Movement speed
 CREEP_G1_TYPE = 'ground'; // Air or Ground
 CREEP_G1_MONEY = 1; // Money dropped on death
 CREEP_G1_DAMAGE = 1; // Number of Lives taken
-CREEP_G1_SIZE = CELL_WIDTH/3; // Size of texture to render
+CREEP_G1_SIZE = CELL_WIDTH/2; // Size of texture to render
 
 CREEP_G2_DISPLAY = 'Ground Creep 2'; // Display name
 CREEP_G2_HEALTH = 200; // HP
@@ -134,7 +134,7 @@ CREEP_G2_SPEED = 2; // Movement speed
 CREEP_G2_TYPE = 'ground'; // Air or Ground
 CREEP_G2_MONEY = 5; // Money dropped on death
 CREEP_G2_DAMAGE = 5; // Number of Lives taken
-CREEP_G2_SIZE = CELL_WIDTH*2/3; // Size of texture to render
+CREEP_G2_SIZE = CELL_WIDTH*3/4; // Size of texture to render
 
 CREEP_F1_DISPLAY = 'Flying Creep 1'; // Display name
 CREEP_F1_HEALTH = 100; // HP

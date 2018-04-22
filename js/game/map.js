@@ -219,7 +219,7 @@ function getShortestGroundPath(direction, map){
             }
         }
     }
-    console.log('Error: no shortest ground path found');
+    return [];
 }
 
 function updateShortestPaths(){

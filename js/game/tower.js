@@ -2,18 +2,27 @@ function getTower(indices, tower){
     if(getTowerCost(tower) > game_data.player['money']){
         return;
     }
-    x = indices.x;
-    y = indices.y;
-    cell = map[x][y];
+    t = indices.x;
+    v = indices.y;
+    cell = map[t][v];
     adjacent_cells = getAdjacentCells(indices);
     if(adjacent_cells === undefined){
         console.log('Adjacent cells undefined');
         return;
     } else if(cell === 'empty'){
-        map[x][y] = tower;
-        game_data.player['money'] -= getTowerCost(tower);
-        game_data.towers.push(indices);
+        map[t][v] = tower;
+        old_glr_path = game_data.path['glr'].slice();
+        old_gud_path = game_data.path['gud'].slice();
         updateShortestPaths();
+        if(game_data.path['glr'].length<=1 || game_data.path['gud'].length<=1) {
+            console.log('No shortest path');
+            game_data.path['glr'] = old_glr_path.slice();
+            game_data.path['gud'] = old_gud_path.slice();
+            map[t][v] = 'empty';
+        } else {
+            game_data.player['money'] -= getTowerCost(tower);
+            game_data.towers.push(indices);
+        }
     } else {
         console.log('Cell is invalid.');
         return;
